@@ -1,0 +1,8 @@
+build/
+tests/data/golden/
+compile_commands.json
+__pycache__/
+ref/py-*/
+ref/current
+.claude/
+tests/fixtures/

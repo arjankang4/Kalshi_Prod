@@ -1,0 +1,10 @@
+# One executable per apps/<name>/main.cpp, named after the directory.
+file(GLOB KP_APP_DIRS LIST_DIRECTORIES true CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*)
+foreach(d ${KP_APP_DIRS})
+    if(IS_DIRECTORY ${d} AND EXISTS ${d}/main.cpp)
+        get_filename_component(name ${d} NAME)
+        file(GLOB src CONFIGURE_DEPENDS ${d}/*.cpp)
+        add_executable(${name} ${src})
+        target_link_libraries(${name} PRIVATE kp_app kp_all kp::fp kp::warnings)
+    endif()
+endforeach()
